@@ -1,0 +1,4 @@
+.venv/
+package/
+chatbot.zip
+__pycache__/

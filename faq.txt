@@ -1,0 +1,25 @@
+Trailhead Outfitters - Customer FAQ
+
+Q: What are your store hours?
+A: Monday to Saturday 9am-8pm, Sunday 10am-6pm. We are closed on Thanksgiving and Christmas Day.
+
+Q: What is your return policy?
+A: Unused items can be returned within 30 days with a receipt for a full refund. Worn items can be exchanged within 14 days. Sale items are final sale.
+
+Q: Do you offer free shipping?
+A: Yes, on orders over $50 within the continental US. Orders under $50 ship for a flat $6.95.
+
+Q: How long does shipping take?
+A: Standard shipping takes 3-5 business days. Express shipping (2 business days) costs $14.95.
+
+Q: Do you rent camping gear?
+A: Yes. Tents rent for $25 per day and sleeping bags for $10 per day. A $100 deposit is required and refunded when the gear is returned clean.
+
+Q: Do you have a loyalty program?
+A: Yes, Trail Points. You earn 1 point per dollar spent, and every 200 points gives you a $10 reward. Signing up is free at the register or on our website.
+
+Q: Can I get my order delivered internationally?
+A: We currently ship only within the United States.
+
+Q: How do I contact customer service?
+A: Email help@trailhead-example.com or call 555-0142, Monday to Friday 9am-5pm Eastern.
