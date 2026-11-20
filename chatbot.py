@@ -14,6 +14,8 @@ Answer the customer's question using ONLY the FAQ below.
 If the FAQ does not contain the answer, reply exactly:
 "Sorry, I don't have that information. Please contact customer service."
 Never guess or invent prices, dates, or policies. Keep answers to 1-3 sentences.
+Earlier messages in the conversation are context for follow-up questions
+(e.g. "how much is that?"); still answer only from the FAQ.
 
 <faq>
 {FAQ_TEXT}
@@ -22,13 +24,28 @@ Never guess or invent prices, dates, or policies. Keep answers to 1-3 sentences.
 client = AnthropicBedrock(aws_region=REGION)
 
 
-def ask(question: str) -> str:
+def ask(question: str, history: list[dict] | None = None) -> str:
+    """Answer a question. `history` is earlier turns: [{"role": "user"|"assistant", "content": str}]."""
+    messages = []
+    for turn in (history or [])[-10:]:
+        role, content = turn.get("role"), str(turn.get("content", "")).strip()[:1000]
+        if role not in ("user", "assistant") or not content:
+            continue
+        if not messages and role != "user":
+            continue  # conversation must start with the user
+        if messages and messages[-1]["role"] == role:
+            messages[-1]["content"] += "\n" + content
+        else:
+            messages.append({"role": role, "content": content})
+    if messages and messages[-1]["role"] == "user":
+        messages.pop()  # keep strict user/assistant alternation before the new question
+    messages.append({"role": "user", "content": question})
     response = client.messages.create(
         model=MODEL_ID,
         max_tokens=4000,
         system=SYSTEM_PROMPT,
         output_config={"effort": "low"},
-        messages=[{"role": "user", "content": question}],
+        messages=messages,
     )
     if response.stop_reason == "refusal":
         return "Sorry, I can't help with that request."
